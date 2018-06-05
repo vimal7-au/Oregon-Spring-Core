@@ -1,4 +1,4 @@
-package com.nike.oregon.spring;
+package com.nike.oregon.spring.application;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;

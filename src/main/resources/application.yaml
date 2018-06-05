@@ -1,0 +1,11 @@
+server:
+  port: 7070
+
+usa:
+  states:
+    -
+     name: California
+     train: http://api.bart.gov/api/route.aspx?cmd=routes&key=MW9S-E7SL-26DU-VV8V&json=y
+    -
+     name: Oregon
+     train: http://api.bart.gov/api/route.aspx?cmd=routes&key=MW9S-E7SL-26DU-VV8V&json=y
