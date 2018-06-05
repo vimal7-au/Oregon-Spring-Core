@@ -5,11 +5,7 @@ buildscript {
 		springBootVersion = '2.0.2.RELEASE'
 	}
 	repositories {
-		maven { url "https://mavenrepository.int.corp.sun/content/repositories/inhouse" }
-        maven { url "https://mavenrepository.int.corp.sun/content/repositories/inhouse.snapshot" }
-        maven { url "https://mavenrepository.int.corp.sun/content/repositories/central/" }
-        maven { url "https://mavenrepository.int.corp.sun/content/repositories/atlassian/" }
-        maven { url "https://mavenrepository.int.corp.sun/content/groups/public/" }
+
         maven {
             url "https://plugins.gradle.org/m2/"
         }
@@ -46,6 +42,8 @@ dependencies {
     compile group: 'org.springframework.boot', name: 'spring-boot-starter-aop'
     compile group: 'org.springframework.boot', name: 'spring-boot-starter-web'
     compile group: 'org.apache.commons', name: 'commons-lang3'
+    compile group: 'com.netflix.hystrix', name: 'hystrix-core', version: '1.5.12'
+    compile group: 'com.netflix.hystrix', name: 'hystrix-javanica', version: '1.5.12'
 
 	testCompile('org.springframework.boot:spring-boot-starter-test')
 

@@ -20,7 +20,8 @@ public class FlightServiceImpl implements FlightService {
 
     @Override
     public void invoke() {
-        ResponseEntity<String> forEntity = restTemplate.getForEntity(stateProperties.getStates().get(0).getTrain(), String.class);
+        String url = "http://api.bart.gov/api/route.aspx?cmd=routes&key=MW9S-E7SL-26DU-VV8V&json=y";
+        ResponseEntity<String> forEntity = restTemplate.getForEntity(url, String.class);
         System.out.println(forEntity);
     }
 }
