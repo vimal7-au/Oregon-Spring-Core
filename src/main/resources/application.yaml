@@ -1,6 +1,16 @@
 server:
   port: 7070
+spring:
+  application:
+    name: equinox
+endpoints.health.sensitive: false
+management.security.enabled: false
+server.tomcat.max-threads: 5
 
+turbine:
+  aggregator:
+    clusterConfig: SAMPLE-HYSTRIX-AGGREGATE
+  appConfig: SAMPLE-HYSTRIX-AGGREGATE
 usa:
   states:
     -

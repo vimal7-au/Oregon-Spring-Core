@@ -19,8 +19,8 @@ public class CruiseService {
 
     @HystrixCommand(fallbackMethod = "defaultCall")
     public List<Cruise> getCruises(String country) {
-        throw new RuntimeException();
-       // return Collections.EMPTY_LIST;
+       // throw new RuntimeException();
+        return Collections.EMPTY_LIST;
     }
 
     public List<Cruise> defaultCall(String country) {

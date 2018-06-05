@@ -20,7 +20,7 @@ import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
  * Created by VRadh1 on 4/5/2017.
  */
 @RestController
-@RequestMapping(value = "/v1/anz/", produces = {APPLICATION_JSON_VALUE})
+@RequestMapping(value = "/v1/nike", produces = {APPLICATION_JSON_VALUE})
 public class WildLifeResource {
 
     private static final Logger logger = LoggerFactory.getLogger(WildLifeResource.class);
