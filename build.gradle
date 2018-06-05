@@ -1,0 +1,43 @@
+defaultTasks 'clean', 'build'
+
+buildscript {
+	ext {
+		springBootVersion = '2.0.2.RELEASE'
+	}
+	repositories {
+		maven { url "https://mavenrepository.int.corp.sun/content/repositories/inhouse" }
+        maven { url "https://mavenrepository.int.corp.sun/content/repositories/inhouse.snapshot" }
+        maven { url "https://mavenrepository.int.corp.sun/content/repositories/central/" }
+        maven { url "https://mavenrepository.int.corp.sun/content/repositories/atlassian/" }
+        maven { url "https://mavenrepository.int.corp.sun/content/groups/public/" }
+		mavenCentral()
+		mavenLocal()
+	}
+	dependencies {
+		classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
+	}
+}
+
+apply plugin: 'java'
+apply plugin: 'eclipse'
+apply plugin: 'org.springframework.boot'
+apply plugin: 'io.spring.dependency-management'
+
+group = 'Oregon-Spring-Core'
+version = '0.0.1-SNAPSHOT'
+sourceCompatibility = 1.8
+
+repositories {
+
+	mavenCentral()
+	mavenLocal()
+}
+
+
+dependencies {
+	compile('org.springframework.boot:spring-boot-starter-validation')
+	compile('org.springframework.retry:spring-retry')
+	runtime('org.springframework.boot:spring-boot-devtools')
+	compileOnly('org.projectlombok:lombok')
+	testCompile('org.springframework.boot:spring-boot-starter-test')
+}
