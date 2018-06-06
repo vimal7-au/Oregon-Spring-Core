@@ -1,4 +1,4 @@
-package  com.nike.oregon.spring.resource;
+package com.nike.oregon.spring.resource;
 
 import com.nike.oregon.spring.entity.WildLife;
 import com.nike.oregon.spring.service.WildLifeService;

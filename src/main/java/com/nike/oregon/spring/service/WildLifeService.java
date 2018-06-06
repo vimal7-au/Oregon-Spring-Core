@@ -26,19 +26,13 @@ public class WildLifeService {
 
     @Async
     public List<WildLife> getwildLifes() {
-
         try {
             logger.info("getwildLifes start sleep {} ", Thread.currentThread());
-
             Thread.sleep(10000);
-
             logger.info("getwildLifes end sleep {} ", Thread.currentThread());
-
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
-
-
         return Collections.EMPTY_LIST;
     }
 
@@ -47,12 +41,10 @@ public class WildLifeService {
         logger.info("Invoking getwildLifesAsync for {} ", Thread.currentThread());
         String url = "http://environment.ehp.qld.gov.au/species/?op=getclassnames&kingdom=animals";
         AsyncRestTemplate restTemplate = new AsyncRestTemplate();
-
         CompletableFuture<Future<ResponseEntity<String>>> completableFuture = CompletableFuture.supplyAsync(()-> {
             Future<ResponseEntity<String>> futureEntity = restTemplate.getForEntity(url, String.class);
             return futureEntity;
         });
-
         completableFuture.thenAcceptAsync(this::complete);
         try {
             Thread.sleep(10000);
@@ -60,15 +52,12 @@ public class WildLifeService {
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
-
-
         return Collections.EMPTY_LIST;
     }
 
 
     private void complete(Future<ResponseEntity<String>> futureEntity) {
-
-        logger.info("Complted for {} ", Thread.currentThread());
+        logger.info("Completed for {} ", Thread.currentThread());
     }
 
     private ClientHttpRequestFactory getClientHttpRequestFactory() {
