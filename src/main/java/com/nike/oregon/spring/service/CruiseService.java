@@ -20,7 +20,7 @@ public class CruiseService {
     @HystrixCommand(fallbackMethod = "defaultCall")
     public List<Cruise> getCruises(String country) {
        // throw new RuntimeException();
-        logger.info("The thread seving getCruises {}", Thread.currentThread().getName());
+        logger.info("The thread serving getCruises {}", Thread.currentThread().getName());
         return Collections.EMPTY_LIST;
     }
 

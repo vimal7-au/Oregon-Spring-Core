@@ -8,6 +8,7 @@ package com.nike.oregon.spring.resource;
         import org.springframework.beans.factory.annotation.Autowired;
         import org.springframework.http.HttpStatus;
         import org.springframework.http.ResponseEntity;
+        import org.springframework.scheduling.annotation.Async;
         import org.springframework.web.bind.annotation.PathVariable;
         import org.springframework.web.bind.annotation.RequestMapping;
         import org.springframework.web.bind.annotation.RequestMethod;
@@ -22,6 +23,7 @@ package com.nike.oregon.spring.resource;
  */
 @RestController
 @RequestMapping(value = "/v1/nike", produces = {APPLICATION_JSON_VALUE})
+@Async
 public class CruiseResource {
     private static final Logger logger = LoggerFactory.getLogger(CruiseResource.class);
 
@@ -35,7 +37,7 @@ public class CruiseResource {
             produces = APPLICATION_JSON_VALUE)
     public ResponseEntity<List<Cruise>> getCountries(@PathVariable(value = "country") String country) {
 
-        logger.info("getCountries..............invokeddddd");
+        logger.info("getCountries..............invokeddddd {}", Thread.currentThread());
         awsService.configure();
         List<Cruise> cruises = cruiseService.getCruises(country);
         return new ResponseEntity(cruises, HttpStatus.OK);
