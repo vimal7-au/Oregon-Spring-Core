@@ -10,15 +10,15 @@ import java.util.concurrent.Executor;
 @Configuration
 public class ThreadPoolConfiguration {
 
-//
-//    @Bean
-//    public Executor threadPoolTaskExecutor() {
-//        ThreadPoolTaskExecutor executor = new ThreadPoolTaskExecutor();
-//        executor.setCorePoolSize(4);
-//        executor.setMaxPoolSize(4);
-//        executor.setThreadNamePrefix("nike_task_executor_thread");
-//        executor.initialize();
-//        return executor;
-//    }
+
+    @Bean
+    public Executor threadPoolTaskExecutor() {
+        ThreadPoolTaskExecutor executor = new ThreadPoolTaskExecutor();
+        executor.setCorePoolSize(2);
+        executor.setMaxPoolSize(2);
+        executor.setThreadNamePrefix("nike_task_executor_thread");
+        executor.initialize();
+        return executor;
+    }
 
 }

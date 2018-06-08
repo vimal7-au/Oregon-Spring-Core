@@ -4,10 +4,13 @@ import com.netflix.hystrix.contrib.javanica.annotation.HystrixCommand;
 import com.nike.oregon.spring.entity.Cruise;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.concurrent.CompletableFuture;
 
 /**
  * Created by VRadh1 on 3/30/2017.
@@ -28,4 +31,14 @@ public class CruiseService {
         logger.info("Default call");
         return Collections.EMPTY_LIST;
     }
+
+
+    @Async
+    public CompletableFuture<List<Cruise>> getCruisesAsync() {
+        logger.info("getCruisesAsync ===>   {} ", Thread.currentThread().getId());
+        List<Cruise> cruiseList = new ArrayList<>();
+        cruiseList.add(new Cruise("Cuise-ZR-7"));
+        return CompletableFuture.completedFuture(cruiseList);
+    }
+
 }

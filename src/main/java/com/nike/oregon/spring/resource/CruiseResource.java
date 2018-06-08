@@ -15,6 +15,7 @@ package com.nike.oregon.spring.resource;
         import org.springframework.web.bind.annotation.RestController;
 
         import java.util.List;
+        import java.util.concurrent.CompletableFuture;
 
         import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
 
@@ -40,6 +41,15 @@ public class CruiseResource {
         logger.info("getCountries..............invokeddddd {}", Thread.currentThread());
         awsService.configure();
         List<Cruise> cruises = cruiseService.getCruises(country);
+        return new ResponseEntity(cruises, HttpStatus.OK);
+    }
+
+    @RequestMapping(value = "/cruises", method = RequestMethod.GET,
+            produces = APPLICATION_JSON_VALUE)
+    public ResponseEntity<List<Cruise>> getCruisesAsync() {
+
+        logger.info("getCruisesAsync.. {}", Thread.currentThread());
+        CompletableFuture<List<Cruise>> cruises = cruiseService.getCruisesAsync();
         return new ResponseEntity(cruises, HttpStatus.OK);
     }
 }

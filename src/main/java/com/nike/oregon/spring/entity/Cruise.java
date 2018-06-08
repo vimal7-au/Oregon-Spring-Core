@@ -5,5 +5,14 @@ package com.nike.oregon.spring.entity;
  */
 public class Cruise {
 
-    private String cruseCode;
+    private String cruiseCode;
+
+
+    public Cruise() {
+
+    }
+
+    public Cruise(String code) {
+        this.cruiseCode = code;
+    }
 }

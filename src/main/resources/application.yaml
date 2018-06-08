@@ -1,11 +1,14 @@
 server:
   port: 7070
+  tomcat:
+    max-threads: 5
+
+
 spring:
   application:
     name: equinox
 endpoints.health.sensitive: false
 management.security.enabled: false
-server.tomcat.max-threads: 5
 
 turbine:
   aggregator:
