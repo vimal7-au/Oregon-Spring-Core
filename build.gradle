@@ -5,35 +5,32 @@ buildscript {
 		springBootVersion = '2.0.2.RELEASE'
 	}
 	repositories {
-        maven { url "https://mavenrepository.int.corp.sun/content/repositories/inhouse" }
-        maven { url "https://mavenrepository.int.corp.sun/content/repositories/inhouse.snapshot" }
-        maven { url "https://mavenrepository.int.corp.sun/content/repositories/central/" }
-        maven { url "https://mavenrepository.int.corp.sun/content/groups/public/" }
-
+        maven {
+            url "https://plugins.gradle.org/m2/"
+        }
 		mavenCentral()
 		mavenLocal()
 	}
 	dependencies {
 		classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
         classpath("gradle.plugin.com.gorylenko.gradle-git-properties:gradle-git-properties:1.4.21")
+        classpath('gradle.plugin.com.palantir.gradle.docker:gradle-docker:0.13.0')
 	}
 }
 
 apply plugin: 'java'
 apply plugin: 'org.springframework.boot'
 apply plugin: 'io.spring.dependency-management'
+apply plugin: 'com.palantir.docker'
 
-group = 'Oregon-Spring-Core'
+
+group = 'oregon-spring-core'
 version = '0.0.1-SNAPSHOT'
 sourceCompatibility = 1.8
 
 repositories {
 
-    maven { url "https://mavenrepository.int.corp.sun/content/repositories/inhouse" }
-    maven { url "https://mavenrepository.int.corp.sun/content/repositories/inhouse.snapshot" }
-    maven { url "https://mavenrepository.int.corp.sun/content/repositories/central/" }
-    maven { url "https://mavenrepository.int.corp.sun/content/groups/public/" }
-	mavenCentral()
+  	mavenCentral()
 	mavenLocal()
 }
 
@@ -69,6 +66,17 @@ jar {
     }
 }
 
+bootJar {
+    baseName = 'oregon-spring-core'
+    version =  '0.0.1-SNAPSHOT'
+}
+
 springBoot {
     buildInfo()
+}
+docker {
+    dependsOn build
+    name "${project.group}/${bootJar.baseName}"
+    files bootJar.archivePath
+    buildArgs(['JAR_FILE': "${bootJar.archiveName}"])
 }
