@@ -3,12 +3,18 @@ server:
   tomcat:
     max-threads: 5
 
+#management.endpoint.info.enabled: true
+#management.endpoint.metrics.enabled: true
+#management.endpoint.sensitive: false
 
-spring:
-  application:
-    name: equinox
-endpoints.health.sensitive: false
-management.security.enabled: false
+management:
+  endpoints:
+    web:
+      exposure:
+        include: info, health, metrics, beans, server
+
+
+
 
 turbine:
   aggregator:

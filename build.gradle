@@ -39,6 +39,7 @@ dependencies {
 	compile('org.springframework.boot:spring-boot-starter-validation')
 	compile('org.springframework.retry:spring-retry')
     compile group: 'org.springframework.boot', name: 'spring-boot-actuator'
+    compile("org.springframework.boot:spring-boot-starter-actuator")
     compile group: 'org.springframework.boot', name: 'spring-boot-devtools'
 	compileOnly('org.projectlombok:lombok')
     compile group: 'org.springframework.boot', name: 'spring-boot-loader-tools'

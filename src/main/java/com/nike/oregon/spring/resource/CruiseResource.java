@@ -12,6 +12,7 @@ package com.nike.oregon.spring.resource;
         import org.springframework.web.bind.annotation.PathVariable;
         import org.springframework.web.bind.annotation.RequestMapping;
         import org.springframework.web.bind.annotation.RequestMethod;
+        import org.springframework.web.bind.annotation.ResponseBody;
         import org.springframework.web.bind.annotation.RestController;
 
         import java.util.List;
@@ -46,10 +47,17 @@ public class CruiseResource {
 
     @RequestMapping(value = "/cruises", method = RequestMethod.GET,
             produces = APPLICATION_JSON_VALUE)
-    public ResponseEntity<List<Cruise>> getCruisesAsync() {
+    @ResponseBody
+    public ResponseEntity<List<Cruise>> getCruisesAsync() throws Exception{
 
         logger.info("getCruisesAsync.. {}", Thread.currentThread());
         CompletableFuture<List<Cruise>> cruises = cruiseService.getCruisesAsync();
+        try {
+            logger.info("getCruisesAsync..result {}", cruises.get());
+        } catch(Throwable throwable) {
+            throwable.printStackTrace();
+        }
+        cruises.join();
         return new ResponseEntity(cruises, HttpStatus.OK);
     }
 }
