@@ -1,0 +1,7 @@
+server:
+  servlet:
+    context-path: /equinox/stg
+  port: 8080
+
+
+version: 100-stg

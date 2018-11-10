@@ -3,6 +3,9 @@ server:
   tomcat:
     max-threads: 5
 
+
+
+
 #management.endpoint.info.enabled: true
 #management.endpoint.metrics.enabled: true
 #management.endpoint.sensitive: false

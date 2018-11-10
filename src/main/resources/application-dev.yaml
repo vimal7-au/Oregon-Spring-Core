@@ -1,0 +1,8 @@
+server:
+  servlet:
+    context-path: /equinox/dev
+  port: 7070
+
+
+
+version: 44

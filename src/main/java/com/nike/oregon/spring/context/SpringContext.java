@@ -14,12 +14,12 @@ public class SpringContext {
     }
 
 
-    public static void main(String[] args) {
+   /* public static void main(String[] args) {
         SpringContext springContext =  new SpringContext();
         FlightService flightService = applicationContext.getBean(FlightService.class);
         flightService.invoke();
 
-    }
+    }*/
 
 
 }

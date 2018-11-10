@@ -1,5 +1,6 @@
 package com.nike.oregon.spring.resource;
 
+import com.nike.oregon.spring.configuration.EnvConfig;
 import com.nike.oregon.spring.entity.WildLife;
 import com.nike.oregon.spring.service.WildLifeService;
 import org.slf4j.Logger;
@@ -28,6 +29,9 @@ public class WildLifeResource {
     @Autowired
     WildLifeService wildLifeService;
 
+    @Autowired
+    EnvConfig envConfig;
+
 
     @RequestMapping(value = "/wildlifes", method = RequestMethod.GET,
             produces = APPLICATION_JSON_VALUE)
@@ -35,6 +39,9 @@ public class WildLifeResource {
         logger.info("Start getWildLifes");
         wildLifeService.getwildLifes();
         logger.info("End getWildLifes");
+
+        logger.info("Version value is ==========>" + envConfig.getVersion());
+
         return new ResponseEntity(Collections.EMPTY_LIST, HttpStatus.OK);
     }
 

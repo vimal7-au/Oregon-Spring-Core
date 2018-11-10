@@ -15,14 +15,20 @@ buildscript {
 		classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
         classpath("gradle.plugin.com.gorylenko.gradle-git-properties:gradle-git-properties:1.4.21")
         classpath('gradle.plugin.com.palantir.gradle.docker:gradle-docker:0.13.0')
+        classpath "gradle.plugin.com.google.cloud.tools:jib-gradle-plugin:0.9.13"
+
 	}
 }
 
 apply plugin: 'java'
 apply plugin: 'org.springframework.boot'
 apply plugin: 'io.spring.dependency-management'
-apply plugin: 'com.palantir.docker'
+apply plugin: 'com.google.cloud.tools.jib'
 
+//
+//plugins {
+//    id 'com.google.cloud.tools.jib' version '0.9.6'
+//}
 
 group = 'oregon-spring-core'
 version = '0.0.1-SNAPSHOT'
@@ -41,7 +47,7 @@ dependencies {
     compile group: 'org.springframework.boot', name: 'spring-boot-actuator'
     compile("org.springframework.boot:spring-boot-starter-actuator")
     compile group: 'org.springframework.boot', name: 'spring-boot-devtools'
-	compileOnly('org.projectlombok:lombok')
+	//compileOnly('org.projectlombok:lombok')
     compile group: 'org.springframework.boot', name: 'spring-boot-loader-tools'
     compile group: 'org.springframework.boot', name: 'spring-boot-starter-aop'
     compile group: 'org.springframework.boot', name: 'spring-boot-starter-web'
@@ -75,9 +81,10 @@ bootJar {
 springBoot {
     buildInfo()
 }
-docker {
-    dependsOn build
-    name "${project.group}/${bootJar.baseName}"
-    files bootJar.archivePath
-    buildArgs(['JAR_FILE': "${bootJar.archiveName}"])
+
+
+jib {
+    to {
+        image = "equinox-v1"
+    }
 }
